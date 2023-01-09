@@ -47,10 +47,9 @@ defmodule Craq do
     do: nil
 
   defp determine_error(%{answer_exists: false, answer_is_valid: _, questions_complete: false}),
-       do: "was not answered"
+    do: "was not answered"
 
   defp determine_error(_), do: nil
-
 
   defp get_selected_option(_question, nil), do: nil
 
