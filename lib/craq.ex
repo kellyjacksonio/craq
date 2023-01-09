@@ -3,9 +3,14 @@ defmodule Craq do
   Documentation for Craq.
   """
 
+  @doc """
+  Determines validity of answers based on provided questions
+
+  Returns true or map of errors detailing why the answers are invalid
+  """
+  @spec valid?(list(), list() | nil) :: true | %{required(String.t()) => String.t()}
   def valid?([], _), do: true
 
-  # Answers are required
   def valid?(questions, nil) do
     valid?(questions, %{})
   end
@@ -42,9 +47,6 @@ defmodule Craq do
          questions_complete: _
        }),
        do: "has an answer that is not on the list of valid answers"
-
-  defp determine_error(%{answer_exists: false, answer_is_valid: _, questions_complete: true}),
-    do: nil
 
   defp determine_error(%{answer_exists: false, answer_is_valid: _, questions_complete: false}),
     do: "was not answered"
